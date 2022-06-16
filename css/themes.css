@@ -1,0 +1,314 @@
+/*  CSS Auxiliar (@Author Júlio M.)  */
+/* CSS Updates Responsive Dijalma Silva*/
+/*  Sumary
+
+line 12   ---------- Css Default
+line 28   ---------- Css Header
+line 36   ---------- Css Programs
+line 61   ---------- Css Social
+line    ---------- 
+*/
+
+/*
+    Default
+    Cor Primária: #3274C6
+    Cor Secundária: #27BBB5
+*/
+
+:root{
+    --color_primary: #4e9b28;
+    --color_secondary: #27BBB5;
+    --color_alternate: #006633;
+}
+
+p, h1, h2, h3, h4, h5, h6{
+    font-family: "gotham", sans-serif !important;
+}
+ 
+.td-main-content-wrap{
+  padding-bottom:0px;
+}
+/* Header */
+
+.sf-menu ul .td-menu-item > a{
+    text-transform: uppercase;
+}
+
+/* End Header */
+
+/* Sub Header Pages */
+.title-page{
+  background-color: #ccc!important;
+}
+/* End Sub Header Pages */
+
+/* Section Program */
+
+.title-section h3{
+    text-align:left;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: var(--color_primary);
+    margin-bottom:0px;
+    padding-bottom:5px;
+}
+.title-section .border-title{
+    width:55px;
+    height: 3px;
+    display: block;
+    background-color: var(--color_secondary);
+}
+.wrapper-title-section .wpb_wrapper{
+    margin-bottom:0px;
+}
+.tcls-wrap .owl-theme .owl-dots .owl-dot span{
+    background:var(--color_primary) !important;
+}
+   
+/* End Section Program */
+
+/* Section Social */
+
+* {
+  box-sizing: border-box;
+}
+#border-secondary{
+    border-top:4px solid var(--color_secondary);
+    border-bottom:4px solid var(--color_secondary);
+}
+.title-social h4{
+    color:#fff;
+    margin:0px;
+    font-size: 26px;
+    line-height: 32px;
+    margin-left:24%;
+    font-weight: 900;
+}
+.title-social h4 span{
+    font-weight: 900;
+    color: var(--color_secondary);
+}
+.text-right{
+    text-align: right;
+}
+.text-center{
+    text-align: center;
+}
+.text-left{
+    text-align: left;
+}
+.fa-facebook {
+  color: #3b5998;
+}
+.fa-twitter {
+  color: #55acee;
+}
+.fa-instagram {
+  color: #3f729b;
+}
+.network-social {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 840px;
+  transform: translate(-50%, -50%);
+}
+.network-social > a {
+  position: relative;
+  display: inline-block;
+  margin-left: 40px;
+  margin-right: 40px;
+  width: 160px;
+  height: 160px;
+  cursor: pointer;
+}
+.network-social > a:hover .front {
+  transform: translateY(-45px);
+}
+.network-social > a.fb:hover .front {
+  transform: translate(-45px, -45px);
+}
+.network-social > a.ig:hover .front {
+  transform: translate(45px, -45px);
+}
+.front {
+  position: absolute;
+  z-index: 10;
+  width: 160px;
+  height: 160px;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0px 0px 40px var(--color_alternate);
+  transition: all 0.3s ease-out;
+  text-align: center;
+}
+.front i.fa {
+    display: block;
+    margin: 40px 0 30px 0;
+    font-size: 50px;
+}
+.front span {
+  color: #ccc;
+}
+.behind {
+  position: absolute;
+  z-index: -1;
+  top: 0px;
+  left: 0px;
+  width: 160px;
+  height: 160px;
+  padding-top: 120px;
+  border-radius: 3px;
+  color: #fff;
+  box-shadow: 0px 0px 10px var(--color_alternate), 0px 0px 20px var(--color_alternate);
+}
+.fb .behind {
+  padding-right: 40px;
+  background: var(--color_secondary);
+}
+.tw .behind {
+  background: var(--color_secondary);
+}
+.ig .behind {
+  padding-left: 40px;
+  background: var(--color_secondary);
+}
+
+/* End Section Social */
+
+/* Section Footer */
+.map-menu .content h3{
+  color:#fff;
+  font-weight: 900;
+  margin-bottom:5px;
+	margin-top:0px;
+}
+.map-menu .content span{
+  width:40px;
+  height: 3px;
+  background-color: var(--color_secondary);
+  display: block;
+}
+.td-footer-bottom-full .block-title{
+  display: none;
+}
+.map-menu .content ul li{
+  list-style: none;
+  padding-left: 15px;
+}
+.map-menu .content ul li a:hover{
+  text-decoration: none!important;
+}
+.td-footer-wrapper{
+  background-color: var(--color_alternate)!important;
+}
+.td-footer-bottom-full .footer-logo-wrap{
+  margin-top:0px!important;
+}
+
+
+/* End Section Social */
+
+.wpb-js-composer .vc_tta.vc_general .vc_tta-panel-body{
+  padding: 0px 0px;
+}
+
+#menu-menu-topbar li a{
+  text-transform: uppercase;
+}
+
+#menu-menu-topbar li a i:hover{
+  color: #f6ff00!important;
+}
+#menu-menu-topbar li a:hover{
+  color: #f6ff00!important;
+}
+#menu-menu-topbar li a img{
+  width: 13px;
+  margin-left: 5px;
+  margin-top:-4px;
+}
+#space-margin{
+  margin-left: 35px;
+}
+#real-accessability{
+  display: none;
+}
+
+#bootstrap-menu ul li, ol li{
+  margin-left: 0px!important;
+}
+
+
+@media(max-width: 1100px ) {
+  
+  #border-secondary {
+    padding: 10px !important; 
+    display: table !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  #border-secondary .vc_column {
+     width: 100% !important;
+     height: 180px;
+  }
+
+  #border-secondary .vc_column .network-social{
+     width: 660px !important;
+     margin: 0 auto !important;
+  }
+
+  #border-secondary .vc_column .network-social a{
+    margin: 0 30px auto !important;
+  }
+
+  #border-secondary .vc_column h4 {
+    margin-left: 0 !important;
+  }
+}
+
+@media(max-width: 680px) {
+
+#border-secondary .vc_column:last-child {
+     height: 480px !important;
+  }
+
+   #border-secondary .vc_column .network-social{
+     width: 180px !important;
+     margin: 0 auto !important;
+     margin-top: 200px !important;
+  }
+
+  #border-secondary .vc_column .network-social a{
+     display: block !important;
+     margin: 10px !important;
+     margin-bottom: 20px !important;
+  }
+}
+
+html {
+scroll-behavior: smooth;
+}01
+.td-header-top-menu {
+min-height: 40px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.top-header-menu li a {
+margin-right: 13px!important;
+line-height: 1;
+}
+
+#menu-menu-topbar li a img {
+width: 13px;
+margin-left: 5px;
+margin-top: -4px;
+}
+
+#prodImagem{
+display: none;
+}

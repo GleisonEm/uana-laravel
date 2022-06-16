@@ -1,0 +1,28 @@
+
+*{
+	margin:4; padding:4;
+}
+
+body{
+	font:11px;
+	font-family:Arial, Helvetica, sans-serif;
+	margin-top: 30px;
+}
+
+#page-wrap{
+	width:600px;
+	margin: 0 auto;
+}
+
+table{
+	border-collapse: collapse; width: 100%;
+}
+
+td{
+	border:1px solid #ccc; padding:5px;
+}
+
+thead{
+	width:100%;position:fixed;
+	height:100px;
+}

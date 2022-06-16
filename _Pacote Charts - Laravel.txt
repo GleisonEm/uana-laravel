@@ -1,0 +1,16 @@
+INSTALAÇÃO
+
+- composer require consoletvs/charts:5.*
+
+- config/app.php
+'providers' => [
+	....
+	ConsoleTVs\Charts\ChartsServiceProvider::class,
+],
+'aliases' => [
+	....
+	'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+],
+
+
+- php artisan vendor:publish

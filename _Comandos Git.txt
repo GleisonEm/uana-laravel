@@ -1,0 +1,14 @@
+git status*/git remote*
+
+git init 
+
+git add --all
+
+git config --global user.mail "mrdsoftsistemas@gmail.com"*
+git config --global user.name "marciorodriguesdiniz"*
+
+git commit -m "Primeiro Commit"
+
+git remote add origin https://github.com/marciorodriguesdiniz/sistemabase.git
+
+git push -u origin master

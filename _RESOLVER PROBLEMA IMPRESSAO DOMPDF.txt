@@ -1,0 +1,3 @@
+- IR EM /dev/storage/fonts/dompdf_font_family_cache.php E MUDAR TODOS OS "\" PARA "/"
+
+- apagar o arquivo dompdf_font_family_cache.php em \vendor\dompdf\dompdf\lib\fonts

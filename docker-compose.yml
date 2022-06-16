@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  app:
+    image: lissonpsantos2/ubuntu-phps:latest
+    restart: always
+    networks:
+      - ada.web
+    container_name: ada-web
+    volumes:
+      - ./:/home/project-folder
+    command: bash -c "selectphp 7.4 && apachelinker /home/project-folder/public && tail -f /tmp/dev.log"
+    ports:
+      - 3045:80
+networks:
+  ada.web:
+    name: ada.web
+    driver: bridge

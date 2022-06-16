@@ -1,0 +1,36 @@
+php artisan make:migration add_table_terms_numero_termo --table=terms
+php artisan make:migration add_table_certificates_validade_licenca --table=certificates
+php artisan make:migration add_table_certificates_provisoria_licenca --table=certificates
+php artisan make:migration add_table_protocols_data_envio_documentacao --table=protocols
+
+php artisan make:migration drop_unique_table_users_email --table=users
+
+
+
+php artisan migrate
+
+
+
+https://blog.especializati.com.br/alterar-tabela-migrations-laravel-sem-perder-dados/
+
+php artisan make:migration add_name_field_table_name --table=users
+
+php artisan make:migration add_image_table_users --table=users
+php artisan make:migration add_table_users_image --table=users
+
+{
+    Schema::table('users', function (Blueprint $table) {
+        $table->string('image') // Nome da coluna
+                    ->nullable() // Preenchimento não obrigatório
+                    ->after('password'); // Ordenado após a coluna "password"
+    });
+}
+
+public function down()
+{
+    Schema::table('users', function (Blueprint $table) {
+        $table->dropColumn('image');
+    });
+}
+	
+php artisan migrate
