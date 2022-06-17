@@ -1,9 +1,14 @@
 <?php
 
 Auth::routes();
-Route::get('/conversa', function () {
+// Route::get('{any}', function () {
+// 	return view('converses.login');
+// })->where('any', '.*');
+
+Route::get('conversas', function () {
 	return view('converses.converses');
-});
+})->name('converses');
+
 Route::group(['middleware' => ['auth'], 'namespace' => 'admin'], function () {
 	Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 	Route::get('home', '\App\Http\Controllers\Admin\AdminController@index');
