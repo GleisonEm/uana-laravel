@@ -22,30 +22,32 @@
 
         <q-tab-panels v-model="tab" animated>
           <q-tab-panel
-            style="height: 70vh; display: flex; flex-direction: column;"
+            style="height: 70vh; display: flex; flex-direction: column"
             name="general"
           >
             <!-- <div class="q-pa-md" style="max-width: 350px"> -->
             <q-list>
               <q-item
-                v-for="contact in converses"
-                :key="contact._id"
+                v-for="converse in converses"
+                :key="converse._id"
                 class="q-mb-sm"
                 clickable
-                @click="navigateToConversePrivate(contact._id)"
+                @click="navigateToConversePrivate(converse._id)"
                 v-ripple
               >
-                <!-- <div @click="navigateToConversePrivate(contact._id)"> -->
+                <!-- <div @click="navigateToConversePrivate(converse._id)"> -->
                 <q-item-section avatar>
                   <q-avatar>
-                    <img :src="contact.image ? contact.image : defaultAvatar" />
+                    <img :src="getAvatar(converse.participants)" />
                   </q-avatar>
                 </q-item-section>
 
                 <q-item-section>
-                  <q-item-label>{{ contact.name }}</q-item-label>
+                  <q-item-label>{{
+                    getName(converse.participants)
+                  }}</q-item-label>
                   <q-item-label caption lines="1">{{
-                    contact.messages[0] ? contact.messages[0].message : ''
+                    converse.messages[0] ? converse.messages[0].message : ""
                   }}</q-item-label>
                 </q-item-section>
                 <!-- </div> -->
@@ -55,7 +57,7 @@
           </q-tab-panel>
 
           <q-tab-panel
-            style="height: 70vh; display: flex; flex-direction: column;"
+            style="height: 70vh; display: flex; flex-direction: column"
             name="classes"
           >
             <q-list>
@@ -78,7 +80,7 @@
                   <q-item-section>
                     <q-item-label>{{ contact.name }}</q-item-label>
                     <q-item-label caption lines="1">{{
-                      contact.messages[0] ? contact.messages[0].message : ''
+                      contact.messages[0] ? contact.messages[0].message : ""
                     }}</q-item-label>
                   </q-item-section>
 
@@ -94,7 +96,7 @@
             </q-list>
           </q-tab-panel>
         </q-tab-panels>
-        <div class="q-mb-sm" align="right" style="padding: 10px;">
+        <div class="q-mb-sm" align="right" style="padding: 10px">
           <q-fab
             v-model="fab2"
             label="Iniciar uma conversa"
@@ -130,163 +132,176 @@
   </div>
 </template>
 <script>
-import Chat from '../services/Chat'
-import { mapState } from 'vuex'
+import Chat from "../services/Chat";
+import { mapState } from "vuex";
+import domain from "../services/api";
 
 export default {
+  setup() {
+    return {
+      fab2: true,
+
+      onClick() {
+        console.log("Clicked on a fab action");
+      },
+    };
+  },
   components: {},
   sockets: {
-    connection: function() {
-      console.log('socket connected KKKKKKKKKKKKKKKKKK')
+    connection: function () {
+      console.log("socket connected KKKKKKKKKKKKKKKKKK");
     },
-    customEmit: function(data) {
+    customEmit: function (data) {
       console.log(
         'this method was fired by the socket server. eg: io.emit("customEmit", data)'
-      )
-    }
+      );
+    },
   },
-  name: 'Chat',
+  name: "converse",
   computed: {
     ...mapState({
       // map this.count to store.state.count
-      user: 'user'
-    })
+      user: "user",
+    }),
   },
   data: () => ({
-    defaultAvatar: require('../assets/default-image.png'),
-    conversationId: '6219124fc392c345cde298e10',
+    conversationId: "6219124fc392c345cde298e10",
     items: [],
     publishing: false,
     classData: null,
     loading: true,
-    name: '',
-    tab: 'general',
+    name: "",
+    tab: "general",
     fab1: true,
     fab2: false,
     converses: [
       {
         _id: 4,
-        name: 'Brunhilde Panswick',
-        messa: 'hello',
-        avatar: 'avatar2.jpg'
+        name: "Brunhilde Panswick",
+        messa: "hello",
+        avatar: "avatar2.jpg",
       },
       {
         _id: 5,
-        name: 'Winfield Stapforth',
-        email: 'Olá',
-        avatar: 'avatar6.jpg'
+        name: "Winfield Stapforth",
+        email: "Olá",
+        avatar: "avatar6.jpg",
       },
       {
         _id: 6,
-        name: 'Brunhilde Panswick',
-        email: 'hello',
-        avatar: 'avatar2.jpg'
+        name: "Brunhilde Panswick",
+        email: "hello",
+        avatar: "avatar2.jpg",
       },
       {
         _id: 7,
-        name: 'Winfield Stapforth',
-        email: 'Olá',
-        avatar: 'avatar6.jpg'
+        name: "Winfield Stapforth",
+        email: "Olá",
+        avatar: "avatar6.jpg",
       },
       {
         _id: 8,
-        name: 'Brunhilde Panswick',
-        email: 'hello',
-        avatar: 'avatar2.jpg'
+        name: "Brunhilde Panswick",
+        email: "hello",
+        avatar: "avatar2.jpg",
       },
       {
         _id: 9,
-        name: 'Winfield Stapforth',
-        email: 'Olá',
-        avatar: 'avatar6.jpg'
-      }
+        name: "Winfield Stapforth",
+        email: "Olá",
+        avatar: "avatar6.jpg",
+      },
     ],
     groupClasses: [
       {
         _id: 4,
-        name: 'Monitoria Inglês',
-        email: 'hello',
-        avatar: 'avatar2.jpg'
+        name: "Monitoria Inglês",
+        email: "hello",
+        avatar: "avatar2.jpg",
       },
       {
         _id: 5,
-        name: 'Monitoria Artes',
-        email: 'Olá',
-        avatar: 'avatar6.jpg'
+        name: "Monitoria Artes",
+        email: "Olá",
+        avatar: "avatar6.jpg",
       },
       {
         _id: 6,
-        name: 'Monitoria Física',
-        email: 'hello',
-        avatar: 'avatar2.jpg'
+        name: "Monitoria Física",
+        email: "hello",
+        avatar: "avatar2.jpg",
       },
       {
         _id: 7,
-        name: 'Monitoria Espanhol',
-        email: 'Olá',
-        avatar: 'avatar6.jpg'
+        name: "Monitoria Espanhol",
+        email: "Olá",
+        avatar: "avatar6.jpg",
       },
       {
         _id: 8,
-        name: 'Monitoria Quimica',
-        email: 'hello',
-        avatar: 'avatar2.jpg'
+        name: "Monitoria Quimica",
+        email: "hello",
+        avatar: "avatar2.jpg",
       },
       {
         _id: 9,
-        name: 'Monitoria Português',
-        email: 'Olá',
-        avatar: 'avatar6.jpg'
-      }
-    ]
+        name: "Monitoria Português",
+        email: "Olá",
+        avatar: "avatar6.jpg",
+      },
+    ],
+    tab: "general",
+    fab2: false,
+    defaultAvatar: "https://cdn.quasar.dev/img/avatar-placeholder.png",
+    converses: [],
+    groupClasses: [],
+    domainApi: domain.domain + "/assets/uploads/avatars/",
   }),
   mounted() {
-    this.getConverses()
-    this.getGroups()
+    this.getConverses();
+    this.getGroups();
   },
   methods: {
     navigateToCreateConversePrivate() {
-      this.$router.push({
-        name: 'ContactsConverse',
-        params: { title: 'Nova Conversa' }
-      })
+      // this.$router.push({
+      //   name: "ContactsConverse",
+      //   params: { title: "Nova Conversa" },
+      // });
+      window.location.href = "contatos-chat";
     },
     async getConverses() {
-      this.loading = true
+      this.loading = true;
       const result = await Chat.getConverses({
         userId: this.user.data.id,
-        type: 'converse'
-      })
-      this.loading = false
-      console.log(result, this.user.data.id)
+        type: "converse",
+      });
+      this.loading = false;
+      console.log(result, this.user.data.id);
       if (!result.success) {
-        return false
+        return false;
       }
 
-      this.converses = result.converses.reverse()
+      this.converses = result.converses.reverse();
 
-      console.log('conversas', this.converses)
+      console.log("conversas", this.converses);
     },
     async getGroups() {
-      this.loading = true
+      this.loading = true;
       const result = await Chat.getConverses({
         userId: this.user.data.id,
-        type: 'group'
-      })
-      this.loading = false
-      console.log(result, this.user.data.id)
+        type: "group",
+      });
+      this.loading = false;
+      console.log(result, this.user.data.id);
       if (!result.success) {
-        return false
+        return false;
       }
 
-      this.groupClasses = result.converses.reverse()
+      this.groupClasses = result.converses.reverse();
     },
     navigateToConversePrivate(conversationId) {
-      console.log('clika', conversationId)
-      this.$router.push({
-        name: 'ConverseDetails',
-        params: { conversationId: conversationId }
-      })
+      console.log("clika", conversationId);
+      window.location.href = "chat/" + conversationId;
     },
     onContentAdded() {},
     submit() {
@@ -296,18 +311,31 @@ export default {
       // })
       // .catch(err => {})
 
-      var message = this.name
+      var message = this.name;
       var data = {
         message: message,
-        userSendId: '6219124fc392c345cde298e6f',
-        conversationId: '6219124fc392c345cde298e10'
-      }
+        userSendId: "6219124fc392c345cde298e6f",
+        conversationId: "6219124fc392c345cde298e10",
+      };
 
-      this.items.push(data)
-      this.$socket.emit('message', data)
+      this.items.push(data);
+      this.$socket.emit("message", data);
       // this.sockets.customEmit(data)
-      console.log('robinn')
-    }
-  }
-}
+      console.log("robinn");
+    },
+    getAvatar(participants) {
+      const avatar = participants.find(
+        (user) => user.id != this.user.data.id
+      ).avatar;
+      if (avatar) {
+        return this.domainApi + avatar;
+      } else {
+        return this.defaultAvatar;
+      }
+    },
+    getName(participants) {
+      return participants.find((user) => user.id != this.user.data.id).name;
+    },
+  },
+};
 </script>

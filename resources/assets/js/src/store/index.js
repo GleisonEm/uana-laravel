@@ -1,14 +1,14 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import VuexPersistence from 'vuex-persist'
+import Vue from "vue";
+import Vuex from "vuex";
+import VuexPersistence from "vuex-persist";
 
-import userModule from './modules/user'
+import userModule from "./modules/user";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const vuexLocal = new VuexPersistence({
-  storage: window.localStorage
-})
+    storage: window.localStorage,
+});
 
 /*
  * If not building with SSR mode, you can
@@ -18,15 +18,24 @@ const vuexLocal = new VuexPersistence({
  * async/await or return a Promise which resolves
  * with the Store instance.
  */
-const Store = new Vuex.Store({
-  modules: {
-    user: userModule,
-  },
+const store = new Vuex.Store({
+    modules: {
+        user: userModule,
+    },
+    // state: {
+    //     user: { data: null, logged: false },
+    // },
+    // mutations: {
+    //     saveUser(state, payload) {
+    //         state.user.data = payload;
+    //     },
+    // },
+    // actions: {},
 
-  // enable strict mode (adds overhead!)
-  // for dev mode only
-  strict: process.env.DEBUGGING,
-  plugins: [vuexLocal.plugin]
-})
+    // enable strict mode (adds overhead!)
+    // for dev mode only
+    strict: process.env.DEBUGGING,
+    plugins: [vuexLocal.plugin],
+});
 
-export default Store
+export default store;

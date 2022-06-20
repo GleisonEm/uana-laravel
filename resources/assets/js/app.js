@@ -4,35 +4,51 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import { Quasar } from 'quasar'
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-import { createApp } from 'vue'
+import Quasar from "quasar";
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Vuex from "vuex";
+// import router from "./src/router/index";
+import router from "./src/route/index";
+import store from "./src/store/index";
+import App from "./src/App.vue";
+import LoginForm from "./src/components/forms/LoginForm.vue";
+import Login from "./src/pages/Login.vue";
+import Converse from "./src/pages/Converse.vue";
+import Chat from "./src/pages/Chat.vue";
+import Contacts from "./src/pages/Contacts.vue";
 
-require('./bootstrap')
+require("./bootstrap");
 
-const app = createApp({})
+Vue.use(VueRouter);
 
-app.use(Quasar)
-    // register the component
-app.component('hello-world', require('./components/ExampleComponent.vue').default)
-app.component('converse', require('./src/pages/Converse.vue').default)
-    // app.component('login-page', require('./src/pages/Login.vue').default)
-    // ..HTML element to mount the Vue application
-app.mount('#app')
+// const routes = [{
+//     path: "/home",
+//     name: "Home",
+// }, ];
+// const router = new VueRouter({ mode: "history", routes });
+Vue.use(Quasar);
+Vue.use(Vuex);
+// register the component
+// app.component('hello-world', require('./components/ExampleComponent.vue').default)
+// app.component('converse', require('./src/pages/Converse.vue').default)
+// Vue.component("login-card", require("./src/pages/Login.vue").default);
+// app.component('login-page', require('./src/pages/Login.vue').default)
+// ..HTML element to mount the Vue application
+// Vue.mount("#app");
 
 // Vue.component('example-list', require('./components/Example.vue').default)
 // Vue.component('task-list', require('./components/Main.vue').default)
-// Vue.component('login-page', require('./src/pages/Login.vue').default)
+// Vue.component("login-paged", require("./src/pages/Login.vue").default);
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default)
 
-// const app = new Vue({
-//     el: '#app',
-// })
-
+const app = new Vue({
+    el: "#app",
+    router,
+    store,
+    components: { App, Login, LoginForm, Converse, Contacts, Chat },
+});
+// app.component("login-page", require("./src/pages/Login.vue").default);
 // import { createApp, h } from 'vue'
 // import { createInertiaApp } from '@inertiajs/inertia-vue3'
 // import { InertiaProgress } from '@inertiajs/progress'

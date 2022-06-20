@@ -32,44 +32,78 @@
 
 <script>
 // import Auth from 'src/services/Auth'
-// import { Notify } from 'quasar'
-// import { mapMutations } from 'vuex'
+import { Notify } from "quasar";
+import Main from "../../services/Main";
+import { mapMutations, mapState } from "vuex";
+import axios from "axios";
 
 export default {
-  name: 'LoginForm',
+  name: "LoginForm",
   data: () => ({
     user: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
     loading: false,
   }),
   methods: {
-    // ...mapMutations('user', [
-    //   'setData',
-    //   'setLogged',
-    // ]),
-    // async handleSubmit() {
-    //   this.loading = true
-    //   const result = await Auth.login(this.user.email, this.user.password)
-    //   this.loading = false
+    ...mapMutations("user", ["setData", "setLogged"]),
+    async handleSubmit() {
+      this.loading = true;
+      // var data = {
+      //   id: 4,
+      //   cpf: "000.000.000-03",
+      //   name: "Luciana Rodrigues Diniz",
+      //   email: "aluno1@gmail.com",
+      //   avatar: "4.jpg",
+      //   assignment_id: 4,
+      //   path_signature: null,
+      //   block: "N",
+      //   institute_id: 1,
+      //   area_id: 3,
+      //   tags: "arduino,web,goiaba,inter",
+      //   created_at: "2022-06-10 18:00:02",
+      //   updated_at: "2022-06-10 18:22:05",
+      //   created_by: "admin",
+      //   updated_by: "Luciana Rodrigues Diniz",
+      // };
+      // this.setData(data);
+      // this.setLogged();
+      const result = await Main.login(this.user.email, this.user.password);
+      this.loading = false;
 
-    //   if (!result.success) {
-    //     Notify.create({
-    //       message: result.message,
-    //       type: 'error',
-    //     })
+      if (!result.success) {
+        console.log("ERRRRRRRROOOOOOOOO");
 
-    //     return false
-    //   }
+        return false;
+      }
+      this.setData(result.user);
+      this.setLogged();
+      window.location.href = "home";
+      // axios
+      //   .post("login", { email: this.user.email, password: this.user.password })
+      //   .then(function (response) {
+      //     console.log("SUCCESS", response.data);
+      //   })
+      //   .catch(function (error) {
+      //     console.log(error);
+      //   });
 
-    //   this.setData(result.user)
-    //   this.setLogged()
-    //   this.$router.push({ name: 'Home' })
-    // },
-  }
-}
+      // console.log(result);
+
+      // if (!result.success) {
+      //   Notify.create({
+      //     message: result.message,
+      //     type: 'error',
+      //   })
+
+      //   return false
+      // }
+
+      // this.$router.push({ name: 'Home' })
+    },
+  },
+};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

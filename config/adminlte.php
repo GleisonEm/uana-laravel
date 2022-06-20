@@ -115,7 +115,7 @@ return [
             'url'  => 'home',
         ],
 
-       //MENU ADMINISTRADOR
+        //MENU ADMINISTRADOR
         [
             'text'    => 'Administrador',
             'icon'    => 'cog',
@@ -150,7 +150,7 @@ return [
                     'text' => 'Usuários',
                     'url'  => 'users',
                     'icon'    => '',
-                    'can'  => 'administrador_usuarios' 
+                    'can'  => 'administrador_usuarios'
                 ],
                 [
                     'text' => 'Perfis',
@@ -230,47 +230,54 @@ return [
             'icon'    => 'graduation-cap',
             'url'  => 'home',
             'can'  => 'modulo_aluno',
-            
+
         ],
-        //MENU PRÓXIMOS EVENTOS 
+        //MENU PRÓXIMOS EVENTOS
         [
             'text'    => 'Próximos eventos',
             'icon'    => 'calendar',
             'url'  => '#',
             'can'  => 'modulo_aluno',
         ],
-        //MENU NOTIFICAÇÕES 
+        //MENU NOTIFICAÇÕES
         [
             'text'    => 'Notificações',
             'icon'    => 'commenting',
             'url'  => 'messages',
             'can'  => 'modulo_aluno',
         ],
-        //MENU AJUDA 
+        //MENU AJUDA
         [
             'text'    => 'Ajuda',
             'icon'    => 'exclamation-circle',
             'url'  => '#',
             'can'  => 'modulo_aluno',
         ],
-        //MENU BAIXAR 
+        //MENU BAIXAR
         [
             'text'    => 'Baixar uana',
             'icon'    => 'download',
             'url'  => '#',
             'can'  => 'modulo_aluno',
         ],
-        
+        //CHAT
+        [
+            'text'    => 'Conversas',
+            'icon'    => 'commenting',
+            'url'  => 'conversas',
+            'can'  => 'modulo_aluno',
+
+        ],
         //#### MENUS EXCLUSIVOS DO PROFESSOR
 
 
-        //MENU SAIR 
+        //MENU SAIR
         [
             'text'    => 'Sair',
             'icon'    => 'power-off',
             'url'  => 'logout',
         ],
- 
+
     ],
 
 
@@ -313,10 +320,10 @@ return [
 
     //COR DOS BOTÕES DO SISTEMA
     'botaoCadastrar'    => 'btn-primary',
-    'botaoAlterar'      => 'btn-primary',//'btn-success',
-    'botaoExcluir'      => 'btn-primary',//'btn-danger',
-    'botaoPesquisar'    => 'btn-primary',//'btn-info',
-    'botaoImprimir'     => 'btn-primary',//'btn-warning',
+    'botaoAlterar'      => 'btn-primary', //'btn-success',
+    'botaoExcluir'      => 'btn-primary', //'btn-danger',
+    'botaoPesquisar'    => 'btn-primary', //'btn-info',
+    'botaoImprimir'     => 'btn-primary', //'btn-warning',
 
 
 ];

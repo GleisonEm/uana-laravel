@@ -5,10 +5,6 @@ Auth::routes();
 // 	return view('converses.login');
 // })->where('any', '.*');
 
-Route::get('conversas', function () {
-	return view('converses.converses');
-})->name('converses');
-
 Route::group(['middleware' => ['auth'], 'namespace' => 'admin'], function () {
 	Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 	Route::get('home', '\App\Http\Controllers\Admin\AdminController@index');
@@ -17,6 +13,12 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'admin'], function () {
 	Route::get('qrcode', function () {
 		return QrCode::size(200)->generate('https://mrdsoft.net/');
 	});
+
+	// CHAT
+
+	Route::get('conversas', '\App\Http\Controllers\ChatController@converses');
+	Route::get('contatos-chat', '\App\Http\Controllers\ChatController@contacts');
+	Route::get('chat/{conversationId}', '\App\Http\Controllers\ChatController@converseDetails');
 	//-- MENSAGENS-------------------------------------------------------
 	Route::resource('messages', '\App\Http\Controllers\Admin\MessageController', ['only' => ['index', 'store']]);
 	Route::any('messages_search', '\App\Http\Controllers\Admin\MessageController@messages_search')->name('messages.search');

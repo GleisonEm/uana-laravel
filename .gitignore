@@ -10,3 +10,5 @@
 # *.log
 # *_
 node_modules
+/public/css/
+/public/js/

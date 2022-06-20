@@ -13,6 +13,9 @@ class AdminController extends Controller
 
     public function index()
     {
+        if (!Auth::user()) {
+            return view('auth.login');
+        }
         ##//ADMINISTRADOR
         if (Auth::user()->assignment_id == 1) {
             $title = 'Administrador do Sistema';
