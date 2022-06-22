@@ -2551,9 +2551,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_socket_io__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_socket_io__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var quasar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! quasar */ "./node_modules/quasar/src/index.esm.js");
 /* harmony import */ var vue_uuid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-uuid */ "./node_modules/vue-uuid/dist/index.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _services_socket_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/socket.js */ "./resources/assets/js/src/services/socket.js");
 /* harmony import */ var _services_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/api */ "./resources/assets/js/src/services/api.js");
+/* harmony import */ var retry__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! retry */ "./node_modules/retry/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -2672,6 +2673,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 
 
@@ -2691,7 +2694,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)');
     }
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)({
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapState)({
     // map this.count to store.state.count
     user: "user"
   })),
@@ -2732,6 +2735,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return localMessage.uniqueId === message.uniqueId;
         })) {
           _this.messages.push(message);
+
+          setTimeout(function () {}, 2000);
+
+          _this.scrollToEnd();
         }
       }
     });
@@ -2784,7 +2791,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 document.getElementsByClassName("titlePerson").value = personName;
                 _this2.loading = false;
 
-              case 13:
+                _this2.scrollToEnd();
+
+              case 14:
               case "end":
                 return _context.stop();
             }
@@ -2826,6 +2835,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
       this.messages.push(data);
       _services_socket_js__WEBPACK_IMPORTED_MODULE_4__["default"].emit("message", data);
+      this.scrollToEnd();
+    },
+    scrollToEnd: function scrollToEnd() {
+      var el = this.$refs.listMessages;
+      console.log("scroll to end ");
+
+      if (el) {
+        el.scrollIntoView({
+          behavior: "smooth",
+          block: "end"
+        });
+      }
     }
   }
 });
@@ -2965,7 +2986,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 _this.loading = true;
                 _context.next = 3;
-                return _services_chatApi_User__WEBPACK_IMPORTED_MODULE_0__["default"].get();
+                return _services_chatApi_User__WEBPACK_IMPORTED_MODULE_0__["default"].get(_this.user.data.id);
 
               case 3:
                 result = _context.sent;
@@ -3030,7 +3051,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context2.abrupt("return", false);
 
               case 8:
-                window.location.href = "chat/" + result.converse._id; // this.navigateToCreateConversePrivate(result.converse._id);
+                _this2.navigateToCreateConversePrivate(result.converse._id);
 
               case 9:
               case "end":
@@ -3041,30 +3062,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     navigateToCreateConversePrivate: function navigateToCreateConversePrivate(conversationId) {
-      this.$router.push({
-        name: "ConverseDetails",
-        params: {
-          conversationId: conversationId
-        }
-      });
+      window.location.href = "chat/" + conversationId;
     },
-    onContentAdded: function onContentAdded() {},
-    submit: function submit() {// axios.post('/your-url', {name: this.name})
-      // .then(res => {
-      //     // do something with res
-      // })
-      // .catch(err => {})
-      // var message = this.name;
-      // var data = {
-      //   message: message,
-      //   userSendId: "6219124fc392c345cde298e6f",
-      //   conversationId: "6219124fc392c345cde298e10"
-      // };
-      // this.items.push(data);
-      // this.$socket.emit("message", data);
-      // // this.sockets.customEmit(data)
-      // console.log("robinn");
-    }
+    onContentAdded: function onContentAdded() {}
   }
 });
 
@@ -3098,6 +3098,14 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4003,15 +4011,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-console.log('fdsfdsfdsfdsfds', _api_chat__WEBPACK_IMPORTED_MODULE_0__["default"]);
+console.log("fdsfdsfdsfdsfds", _api_chat__WEBPACK_IMPORTED_MODULE_0__["default"]);
 var User = {
   get: function () {
-    var _get = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+    var _get = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(userId) {
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              return _context.abrupt("return", _api_chat__WEBPACK_IMPORTED_MODULE_0__["default"].get('users').then(function (r) {
+              return _context.abrupt("return", _api_chat__WEBPACK_IMPORTED_MODULE_0__["default"].get("users", {
+                params: {
+                  userId: userId
+                }
+              }).then(function (r) {
                 return {
                   success: true,
                   users: r.data.users
@@ -4019,7 +4031,7 @@ var User = {
               })["catch"](function (er) {
                 return (0,_errorHandler__WEBPACK_IMPORTED_MODULE_1__["default"])({
                   er: er,
-                  defaultMessage: 'Não foi possível listar os contatos'
+                  defaultMessage: "Não foi possível listar os contatos"
                 });
               }));
 
@@ -4031,7 +4043,7 @@ var User = {
       }, _callee);
     }));
 
-    function get() {
+    function get(_x) {
       return _get.apply(this, arguments);
     }
 
@@ -72828,6 +72840,298 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/retry/index.js":
+/*!*************************************!*\
+  !*** ./node_modules/retry/index.js ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__(/*! ./lib/retry */ "./node_modules/retry/lib/retry.js");
+
+/***/ }),
+
+/***/ "./node_modules/retry/lib/retry.js":
+/*!*****************************************!*\
+  !*** ./node_modules/retry/lib/retry.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+var RetryOperation = __webpack_require__(/*! ./retry_operation */ "./node_modules/retry/lib/retry_operation.js");
+
+exports.operation = function(options) {
+  var timeouts = exports.timeouts(options);
+  return new RetryOperation(timeouts, {
+      forever: options && (options.forever || options.retries === Infinity),
+      unref: options && options.unref,
+      maxRetryTime: options && options.maxRetryTime
+  });
+};
+
+exports.timeouts = function(options) {
+  if (options instanceof Array) {
+    return [].concat(options);
+  }
+
+  var opts = {
+    retries: 10,
+    factor: 2,
+    minTimeout: 1 * 1000,
+    maxTimeout: Infinity,
+    randomize: false
+  };
+  for (var key in options) {
+    opts[key] = options[key];
+  }
+
+  if (opts.minTimeout > opts.maxTimeout) {
+    throw new Error('minTimeout is greater than maxTimeout');
+  }
+
+  var timeouts = [];
+  for (var i = 0; i < opts.retries; i++) {
+    timeouts.push(this.createTimeout(i, opts));
+  }
+
+  if (options && options.forever && !timeouts.length) {
+    timeouts.push(this.createTimeout(i, opts));
+  }
+
+  // sort the array numerically ascending
+  timeouts.sort(function(a,b) {
+    return a - b;
+  });
+
+  return timeouts;
+};
+
+exports.createTimeout = function(attempt, opts) {
+  var random = (opts.randomize)
+    ? (Math.random() + 1)
+    : 1;
+
+  var timeout = Math.round(random * Math.max(opts.minTimeout, 1) * Math.pow(opts.factor, attempt));
+  timeout = Math.min(timeout, opts.maxTimeout);
+
+  return timeout;
+};
+
+exports.wrap = function(obj, options, methods) {
+  if (options instanceof Array) {
+    methods = options;
+    options = null;
+  }
+
+  if (!methods) {
+    methods = [];
+    for (var key in obj) {
+      if (typeof obj[key] === 'function') {
+        methods.push(key);
+      }
+    }
+  }
+
+  for (var i = 0; i < methods.length; i++) {
+    var method   = methods[i];
+    var original = obj[method];
+
+    obj[method] = function retryWrapper(original) {
+      var op       = exports.operation(options);
+      var args     = Array.prototype.slice.call(arguments, 1);
+      var callback = args.pop();
+
+      args.push(function(err) {
+        if (op.retry(err)) {
+          return;
+        }
+        if (err) {
+          arguments[0] = op.mainError();
+        }
+        callback.apply(this, arguments);
+      });
+
+      op.attempt(function() {
+        original.apply(obj, args);
+      });
+    }.bind(obj, original);
+    obj[method].options = options;
+  }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/retry/lib/retry_operation.js":
+/*!***************************************************!*\
+  !*** ./node_modules/retry/lib/retry_operation.js ***!
+  \***************************************************/
+/***/ ((module) => {
+
+function RetryOperation(timeouts, options) {
+  // Compatibility for the old (timeouts, retryForever) signature
+  if (typeof options === 'boolean') {
+    options = { forever: options };
+  }
+
+  this._originalTimeouts = JSON.parse(JSON.stringify(timeouts));
+  this._timeouts = timeouts;
+  this._options = options || {};
+  this._maxRetryTime = options && options.maxRetryTime || Infinity;
+  this._fn = null;
+  this._errors = [];
+  this._attempts = 1;
+  this._operationTimeout = null;
+  this._operationTimeoutCb = null;
+  this._timeout = null;
+  this._operationStart = null;
+  this._timer = null;
+
+  if (this._options.forever) {
+    this._cachedTimeouts = this._timeouts.slice(0);
+  }
+}
+module.exports = RetryOperation;
+
+RetryOperation.prototype.reset = function() {
+  this._attempts = 1;
+  this._timeouts = this._originalTimeouts.slice(0);
+}
+
+RetryOperation.prototype.stop = function() {
+  if (this._timeout) {
+    clearTimeout(this._timeout);
+  }
+  if (this._timer) {
+    clearTimeout(this._timer);
+  }
+
+  this._timeouts       = [];
+  this._cachedTimeouts = null;
+};
+
+RetryOperation.prototype.retry = function(err) {
+  if (this._timeout) {
+    clearTimeout(this._timeout);
+  }
+
+  if (!err) {
+    return false;
+  }
+  var currentTime = new Date().getTime();
+  if (err && currentTime - this._operationStart >= this._maxRetryTime) {
+    this._errors.push(err);
+    this._errors.unshift(new Error('RetryOperation timeout occurred'));
+    return false;
+  }
+
+  this._errors.push(err);
+
+  var timeout = this._timeouts.shift();
+  if (timeout === undefined) {
+    if (this._cachedTimeouts) {
+      // retry forever, only keep last error
+      this._errors.splice(0, this._errors.length - 1);
+      timeout = this._cachedTimeouts.slice(-1);
+    } else {
+      return false;
+    }
+  }
+
+  var self = this;
+  this._timer = setTimeout(function() {
+    self._attempts++;
+
+    if (self._operationTimeoutCb) {
+      self._timeout = setTimeout(function() {
+        self._operationTimeoutCb(self._attempts);
+      }, self._operationTimeout);
+
+      if (self._options.unref) {
+          self._timeout.unref();
+      }
+    }
+
+    self._fn(self._attempts);
+  }, timeout);
+
+  if (this._options.unref) {
+      this._timer.unref();
+  }
+
+  return true;
+};
+
+RetryOperation.prototype.attempt = function(fn, timeoutOps) {
+  this._fn = fn;
+
+  if (timeoutOps) {
+    if (timeoutOps.timeout) {
+      this._operationTimeout = timeoutOps.timeout;
+    }
+    if (timeoutOps.cb) {
+      this._operationTimeoutCb = timeoutOps.cb;
+    }
+  }
+
+  var self = this;
+  if (this._operationTimeoutCb) {
+    this._timeout = setTimeout(function() {
+      self._operationTimeoutCb();
+    }, self._operationTimeout);
+  }
+
+  this._operationStart = new Date().getTime();
+
+  this._fn(this._attempts);
+};
+
+RetryOperation.prototype.try = function(fn) {
+  console.log('Using RetryOperation.try() is deprecated');
+  this.attempt(fn);
+};
+
+RetryOperation.prototype.start = function(fn) {
+  console.log('Using RetryOperation.start() is deprecated');
+  this.attempt(fn);
+};
+
+RetryOperation.prototype.start = RetryOperation.prototype.try;
+
+RetryOperation.prototype.errors = function() {
+  return this._errors;
+};
+
+RetryOperation.prototype.attempts = function() {
+  return this._attempts;
+};
+
+RetryOperation.prototype.mainError = function() {
+  if (this._errors.length === 0) {
+    return null;
+  }
+
+  var counts = {};
+  var mainError = null;
+  var mainErrorCount = 0;
+
+  for (var i = 0; i < this._errors.length; i++) {
+    var error = this._errors[i];
+    var message = error.message;
+    var count = (counts[message] || 0) + 1;
+
+    counts[message] = count;
+
+    if (count >= mainErrorCount) {
+      mainError = error;
+      mainErrorCount = count;
+    }
+  }
+
+  return mainError;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/src/App.vue?vue&type=style&index=0&id=06d2bc14&scoped=true&lang=css&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/src/App.vue?vue&type=style&index=0&id=06d2bc14&scoped=true&lang=css& ***!
@@ -74585,6 +74889,7 @@ var render = function () {
           _c(
             "div",
             {
+              ref: "listMessages",
               staticClass: "q-pa-md column-reverse",
               staticStyle: {
                 margin: "15px",
@@ -74825,327 +75130,343 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "q-pa-md", staticStyle: { flex: "1" } }, [
-    _c(
-      "div",
-      { staticClass: "q-gutter-y-md" },
-      [
-        _c(
-          "q-card",
-          [
-            _c(
-              "q-toolbar",
-              { staticClass: "bg-primary text-white shadow-2" },
-              [_c("q-toolbar-title", [_vm._v("Conversas")])],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "q-tabs",
-              {
-                staticClass: "text-grey",
-                attrs: {
-                  dense: "",
-                  "active-color": "primary",
-                  "indicator-color": "primary",
-                  align: "justify",
-                  "narrow-indicator": "",
-                },
-                model: {
-                  value: _vm.tab,
-                  callback: function ($$v) {
-                    _vm.tab = $$v
+  return _c(
+    "div",
+    {
+      staticClass: "q-pa-md",
+      staticStyle: {
+        flex: "1",
+        "justify-content": "justify-between",
+        overflow: "hidden",
+        height: "100%",
+      },
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "q-gutter-y-md" },
+        [
+          _c(
+            "q-card",
+            [
+              _c(
+                "q-toolbar",
+                { staticClass: "bg-primary text-white shadow-2" },
+                [_c("q-toolbar-title", [_vm._v("Conversas")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "q-tabs",
+                {
+                  staticClass: "text-grey",
+                  attrs: {
+                    dense: "",
+                    "active-color": "primary",
+                    "indicator-color": "primary",
+                    align: "justify",
+                    "narrow-indicator": "",
                   },
-                  expression: "tab",
-                },
-              },
-              [
-                _c("q-tab", { attrs: { name: "general", label: "Principal" } }),
-                _vm._v(" "),
-                _c("q-tab", { attrs: { name: "classes", label: "Turmas" } }),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("q-separator"),
-            _vm._v(" "),
-            _c(
-              "q-tab-panels",
-              {
-                attrs: { animated: "" },
-                model: {
-                  value: _vm.tab,
-                  callback: function ($$v) {
-                    _vm.tab = $$v
-                  },
-                  expression: "tab",
-                },
-              },
-              [
-                _c(
-                  "q-tab-panel",
-                  {
-                    staticStyle: {
-                      height: "70vh",
-                      display: "flex",
-                      "flex-direction": "column",
+                  model: {
+                    value: _vm.tab,
+                    callback: function ($$v) {
+                      _vm.tab = $$v
                     },
-                    attrs: { name: "general" },
+                    expression: "tab",
                   },
-                  [
-                    _c(
-                      "q-list",
-                      _vm._l(_vm.converses, function (converse) {
-                        return _c(
-                          "q-item",
-                          {
-                            directives: [
-                              { name: "ripple", rawName: "v-ripple" },
-                            ],
-                            key: converse._id,
-                            staticClass: "q-mb-sm",
-                            attrs: { clickable: "" },
-                            on: {
-                              click: function ($event) {
-                                return _vm.navigateToConversePrivate(
-                                  converse._id
-                                )
-                              },
-                            },
-                          },
-                          [
-                            _c(
-                              "q-item-section",
-                              { attrs: { avatar: "" } },
-                              [
-                                _c("q-avatar", [
-                                  _c("img", {
-                                    attrs: {
-                                      src: _vm.getAvatar(converse.participants),
-                                    },
-                                  }),
-                                ]),
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "q-item-section",
-                              [
-                                _c("q-item-label", [
-                                  _vm._v(
-                                    _vm._s(_vm.getName(converse.participants))
-                                  ),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "q-item-label",
-                                  { attrs: { caption: "", lines: "1" } },
-                                  [
-                                    _vm._v(
-                                      _vm._s(
-                                        converse.messages[0]
-                                          ? converse.messages[0].message
-                                          : ""
-                                      )
-                                    ),
-                                  ]
-                                ),
-                              ],
-                              1
-                            ),
-                          ],
-                          1
-                        )
-                      }),
-                      1
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "q-tab-panel",
-                  {
-                    staticStyle: {
-                      height: "70vh",
-                      display: "flex",
-                      "flex-direction": "column",
+                },
+                [
+                  _c("q-tab", {
+                    attrs: { name: "general", label: "Principal" },
+                  }),
+                  _vm._v(" "),
+                  _c("q-tab", { attrs: { name: "classes", label: "Turmas" } }),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("q-separator"),
+              _vm._v(" "),
+              _c(
+                "q-tab-panels",
+                {
+                  attrs: { animated: "" },
+                  model: {
+                    value: _vm.tab,
+                    callback: function ($$v) {
+                      _vm.tab = $$v
                     },
-                    attrs: { name: "classes" },
+                    expression: "tab",
                   },
-                  [
-                    _c(
-                      "q-list",
-                      _vm._l(_vm.groupClasses, function (contact) {
-                        return _c(
-                          "q-item",
-                          {
-                            directives: [
-                              { name: "ripple", rawName: "v-ripple" },
-                            ],
-                            key: contact._id,
-                            staticClass: "q-mb-sm",
-                            attrs: { clickable: "" },
-                          },
-                          [
-                            _c(
-                              "div",
-                              {
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.navigateToConversePrivate(
-                                      contact._id
-                                    )
-                                  },
+                },
+                [
+                  _c(
+                    "q-tab-panel",
+                    {
+                      staticStyle: {
+                        height: "70vh",
+                        display: "flex",
+                        "flex-direction": "column",
+                      },
+                      attrs: { name: "general" },
+                    },
+                    [
+                      _c(
+                        "q-list",
+                        _vm._l(_vm.converses, function (converse) {
+                          return _c(
+                            "q-item",
+                            {
+                              directives: [
+                                { name: "ripple", rawName: "v-ripple" },
+                              ],
+                              key: converse._id,
+                              staticClass: "q-mb-sm",
+                              attrs: { clickable: "" },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.navigateToConversePrivate(
+                                    converse._id
+                                  )
                                 },
                               },
-                              [
-                                _c(
-                                  "q-item-section",
-                                  { attrs: { avatar: "" } },
-                                  [
-                                    _c("q-avatar", [
-                                      _c("img", {
-                                        attrs: {
-                                          src:
-                                            "https://cdn.quasar.dev/img/" +
-                                            contact.avatar,
-                                        },
-                                      }),
-                                    ]),
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "q-item-section",
-                                  [
-                                    _c("q-item-label", [
-                                      _vm._v(_vm._s(contact.name)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "q-item-label",
-                                      { attrs: { caption: "", lines: "1" } },
-                                      [
-                                        _vm._v(
-                                          _vm._s(
-                                            contact.messages[0]
-                                              ? contact.messages[0].message
-                                              : ""
-                                          )
-                                        ),
-                                      ]
-                                    ),
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "q-item-section",
-                                  { attrs: { side: "" } },
-                                  [
-                                    _c("q-icon", {
+                            },
+                            [
+                              _c(
+                                "q-item-section",
+                                { attrs: { avatar: "" } },
+                                [
+                                  _c("q-avatar", [
+                                    _c("img", {
                                       attrs: {
-                                        name: "chat_bubble",
-                                        color: "green",
-                                      },
-                                      on: {
-                                        click: function ($event) {
-                                          return _vm.navigateToConversePrivate(
-                                            contact._id
-                                          )
-                                        },
+                                        src: _vm.getAvatar(
+                                          converse.participants
+                                        ),
                                       },
                                     }),
-                                  ],
-                                  1
-                                ),
+                                  ]),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "q-item-section",
+                                [
+                                  _c("q-item-label", [
+                                    _vm._v(
+                                      _vm._s(_vm.getName(converse.participants))
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "q-item-label",
+                                    { attrs: { caption: "", lines: "1" } },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          converse.messages[0]
+                                            ? converse.messages[0].message
+                                            : ""
+                                        )
+                                      ),
+                                    ]
+                                  ),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          )
+                        }),
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "q-tab-panel",
+                    {
+                      staticStyle: {
+                        height: "70vh",
+                        display: "flex",
+                        "flex-direction": "column",
+                      },
+                      attrs: { name: "classes" },
+                    },
+                    [
+                      _c(
+                        "q-list",
+                        _vm._l(_vm.groupClasses, function (contact) {
+                          return _c(
+                            "q-item",
+                            {
+                              directives: [
+                                { name: "ripple", rawName: "v-ripple" },
                               ],
-                              1
-                            ),
-                          ]
-                        )
-                      }),
-                      1
-                    ),
-                  ],
-                  1
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "q-mb-sm",
-                staticStyle: { padding: "10px" },
-                attrs: { align: "right" },
-              },
-              [
-                _c(
-                  "q-fab",
-                  {
-                    attrs: {
-                      label: "Iniciar uma conversa",
-                      "external-label": "",
-                      "vertical-actions-align": "left",
-                      "label-position": "left",
-                      color: "primary",
-                      icon: "chat",
-                      direction: "up",
-                      align: "right",
-                    },
-                    model: {
-                      value: _vm.fab2,
-                      callback: function ($$v) {
-                        _vm.fab2 = $$v
-                      },
-                      expression: "fab2",
-                    },
-                  },
-                  [
-                    _c("q-fab-action", {
+                              key: contact._id,
+                              staticClass: "q-mb-sm",
+                              attrs: { clickable: "" },
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.navigateToConversePrivate(
+                                        contact._id
+                                      )
+                                    },
+                                  },
+                                },
+                                [
+                                  _c(
+                                    "q-item-section",
+                                    { attrs: { avatar: "" } },
+                                    [
+                                      _c("q-avatar", [
+                                        _c("img", {
+                                          attrs: {
+                                            src:
+                                              "https://cdn.quasar.dev/img/" +
+                                              contact.avatar,
+                                          },
+                                        }),
+                                      ]),
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "q-item-section",
+                                    [
+                                      _c("q-item-label", [
+                                        _vm._v(_vm._s(contact.name)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "q-item-label",
+                                        { attrs: { caption: "", lines: "1" } },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              contact.messages[0]
+                                                ? contact.messages[0].message
+                                                : ""
+                                            )
+                                          ),
+                                        ]
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "q-item-section",
+                                    { attrs: { side: "" } },
+                                    [
+                                      _c("q-icon", {
+                                        attrs: {
+                                          name: "chat_bubble",
+                                          color: "green",
+                                        },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.navigateToConversePrivate(
+                                              contact._id
+                                            )
+                                          },
+                                        },
+                                      }),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              ),
+                            ]
+                          )
+                        }),
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "q-mb-sm",
+                  staticStyle: { padding: "10px" },
+                  attrs: { align: "right" },
+                },
+                [
+                  _c(
+                    "q-fab",
+                    {
                       attrs: {
-                        "label-class": "bg-grey-3 text-grey-8",
+                        label: "Iniciar uma conversa",
                         "external-label": "",
-                        color: "secondary",
-                        icon: "group",
+                        "vertical-actions-align": "left",
                         "label-position": "left",
-                        label: "Privada",
-                      },
-                      on: {
-                        click: function ($event) {
-                          return _vm.navigateToCreateConversePrivate()
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c("q-fab-action", {
-                      attrs: {
-                        "label-class": "bg-grey-3 text-grey-8",
-                        "external-label": "",
                         color: "primary",
-                        "label-position": "left",
-                        icon: "groups",
-                        label: "Turma",
+                        icon: "chat",
+                        direction: "up",
+                        align: "right",
                       },
-                    }),
-                  ],
-                  1
-                ),
-              ],
-              1
-            ),
-          ],
-          1
-        ),
-      ],
-      1
-    ),
-  ])
+                      model: {
+                        value: _vm.fab2,
+                        callback: function ($$v) {
+                          _vm.fab2 = $$v
+                        },
+                        expression: "fab2",
+                      },
+                    },
+                    [
+                      _c("q-fab-action", {
+                        attrs: {
+                          "label-class": "bg-grey-3 text-grey-8",
+                          "external-label": "",
+                          color: "secondary",
+                          icon: "group",
+                          "label-position": "left",
+                          label: "Privada",
+                        },
+                        on: {
+                          click: function ($event) {
+                            return _vm.navigateToCreateConversePrivate()
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("q-fab-action", {
+                        attrs: {
+                          "label-class": "bg-grey-3 text-grey-8",
+                          "external-label": "",
+                          color: "primary",
+                          "label-position": "left",
+                          icon: "groups",
+                          label: "Turma",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

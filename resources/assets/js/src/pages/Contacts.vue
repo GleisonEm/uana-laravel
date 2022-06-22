@@ -103,7 +103,7 @@ export default {
   methods: {
     async getUsers() {
       this.loading = true;
-      const result = await User.get();
+      const result = await User.get(this.user.data.id);
       this.loading = false;
       if (!result.success) {
         return false;
@@ -134,33 +134,12 @@ export default {
       if (!result.success) {
         return false;
       }
-      window.location.href = "chat/" + result.converse._id;
-      // this.navigateToCreateConversePrivate(result.converse._id);
+      this.navigateToCreateConversePrivate(result.converse._id);
     },
     navigateToCreateConversePrivate(conversationId) {
-      this.$router.push({
-        name: "ConverseDetails",
-        params: { conversationId: conversationId },
-      });
+      window.location.href = "chat/" + conversationId;
     },
     onContentAdded() {},
-    submit() {
-      // axios.post('/your-url', {name: this.name})
-      // .then(res => {
-      //     // do something with res
-      // })
-      // .catch(err => {})
-      // var message = this.name;
-      // var data = {
-      //   message: message,
-      //   userSendId: "6219124fc392c345cde298e6f",
-      //   conversationId: "6219124fc392c345cde298e10"
-      // };
-      // this.items.push(data);
-      // this.$socket.emit("message", data);
-      // // this.sockets.customEmit(data)
-      // console.log("robinn");
-    },
   },
 };
 </script>

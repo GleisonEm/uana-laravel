@@ -1,5 +1,13 @@
 <template>
-  <div class="q-pa-md" style="flex: 1">
+  <div
+    class="q-pa-md"
+    style="
+      flex: 1;
+      justify-content: justify-between;
+      overflow: hidden;
+      height: 100%;
+    "
+  >
     <div class="q-gutter-y-md">
       <q-card>
         <q-toolbar class="bg-primary text-white shadow-2">

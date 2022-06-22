@@ -47,6 +47,7 @@
     >
       <div
         class="q-pa-md column-reverse"
+        ref="listMessages"
         style="margin: 15px; justify-content: center; max-width: 500px"
       >
         <div v-for="message in this.messages" :key="message.uniqueId">
@@ -111,6 +112,7 @@ import { uuid } from "vue-uuid";
 import { mapState } from "vuex";
 import SocketioService from "../services/socket.js";
 import domain from "../services/api";
+import { timeouts } from "retry";
 
 export default {
   props: ["conversationid"],
@@ -166,6 +168,8 @@ export default {
           )
         ) {
           this.messages.push(message);
+          setTimeout(() => {}, 2000);
+          this.scrollToEnd();
         }
       },
     });
@@ -206,6 +210,7 @@ export default {
       this.personName = personName;
       document.getElementsByClassName("titlePerson").value = personName;
       this.loading = false;
+      this.scrollToEnd();
     },
     navigateToCreateConversePrivate() {
       this.$router.push({
@@ -241,6 +246,17 @@ export default {
       this.messages.push(data);
 
       SocketioService.emit("message", data);
+      this.scrollToEnd();
+    },
+    scrollToEnd() {
+      const el = this.$refs.listMessages;
+      console.log("scroll to end ");
+      if (el) {
+        el.scrollIntoView({
+          behavior: "smooth",
+          block: "end",
+        });
+      }
     },
   },
 };

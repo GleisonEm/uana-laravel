@@ -1,20 +1,20 @@
-import apiChat from '../api-chat'
-import errorHandler from '../errorHandler'
-console.log('fdsfdsfdsfdsfds', apiChat)
+import apiChat from "../api-chat";
+import errorHandler from "../errorHandler";
+console.log("fdsfdsfdsfdsfds", apiChat);
 const User = {
-  get: async () =>
+  get: async (userId) =>
     apiChat
-      .get('users')
-      .then(r => ({
+      .get("users", { params: { userId: userId } })
+      .then((r) => ({
         success: true,
-        users: r.data.users
+        users: r.data.users,
       }))
-      .catch(er =>
+      .catch((er) =>
         errorHandler({
           er,
-          defaultMessage: 'Não foi possível listar os contatos'
+          defaultMessage: "Não foi possível listar os contatos",
         })
-      )
+      ),
 
   // find: async (id) => api.get(`classes/${id}`)
   //   .then(r => ({
@@ -23,6 +23,6 @@ const User = {
   //     class: r.data.class,
   //   }))
   //   .catch(er => errorHandler({ er, defaultMessage: 'Não foi possível encontrar a turma'}))
-}
+};
 
-export default User
+export default User;
